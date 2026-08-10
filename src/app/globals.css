@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #080706;
+  --color-paper: #f4eee3;
+  --color-stone: #c8b79d;
+  --color-gold: #e1b96a;
+  --color-stone-border: #6f5c45;
+}
+
+:root {
+  color-scheme: dark;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: Arial, sans-serif;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 4px;
+}

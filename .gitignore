@@ -1,0 +1,8 @@
+node_modules/
+.next/
+coverage/
+test-results/
+tsconfig.tsbuildinfo
+.env*
+!.env.example
+CODEX_PROMPTS.md
