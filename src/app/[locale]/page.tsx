@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 
 import { ExperienceCanvas } from "@/experience/ExperienceCanvas";
+import { JourneyController } from "@/journey/JourneyController";
 import { StoryShell } from "@/interface/StoryShell";
-import { getFoundationContent } from "@/content/foundation-content";
+import { getJourneyContent } from "@/content/journey-content";
 import { isLocale, type Locale } from "@/content/content.types";
 
 type LocalePageProps = Readonly<{
@@ -21,7 +22,8 @@ export default async function LocalePage({ params }: LocalePageProps) {
   return (
     <>
       <ExperienceCanvas />
-      <StoryShell content={getFoundationContent(locale)} />
+      <JourneyController />
+      <StoryShell content={getJourneyContent(locale)} />
     </>
   );
 }
