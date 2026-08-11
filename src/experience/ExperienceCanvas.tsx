@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 
 import { SceneRoot } from "./SceneRoot";
+import { CameraDiagnostics } from "./CameraDiagnostics";
 import { WebGLErrorBoundary } from "./WebGLErrorBoundary";
 import { WebGLFallback } from "./WebGLFallback";
 
@@ -32,6 +33,7 @@ export function ExperienceCanvas() {
       <Canvas className="pointer-events-none fixed inset-0 z-0" aria-hidden="true" dpr={[1, 1.5]}>
         <SceneRoot />
       </Canvas>
+      {process.env.NODE_ENV === "development" ? <CameraDiagnostics /> : null}
     </WebGLErrorBoundary>
   );
 }

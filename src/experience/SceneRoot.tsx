@@ -1,3 +1,10 @@
+import { CameraRig } from "./CameraRig";
+
 export function SceneRoot() {
-  return <ambientLight intensity={0.2} />;
+  return (
+    <>
+      <CameraRig />
+      <ambientLight intensity={0.2} />
+    </>
+  );
 }
