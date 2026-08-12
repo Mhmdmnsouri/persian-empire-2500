@@ -58,6 +58,10 @@ export function validateJourneyContent(content: LocalizedJourneyContent): string
     ...validateText(content.interface.fallbackStatus, "interface.fallbackStatus"),
     ...validateText(content.interface.sourceHeading, "interface.sourceHeading"),
     ...validateText(content.interface.uncertaintyHeading, "interface.uncertaintyHeading"),
+    ...content.introMotion.words.flatMap((word, index) =>
+      validateText(word, `introMotion.words.${index}`),
+    ),
+    ...validateText(content.introMotion.sentence, "introMotion.sentence"),
   ];
   for (const stationId of stationIds) {
     const station = content.stations[stationId];
@@ -105,6 +109,9 @@ export function validateBilingualContent(
     ...validateJourneyContent(english),
     ...validateJourneyContent(persian),
   ];
+  if (english.introMotion.words.length !== persian.introMotion.words.length) {
+    errors.push("introMotion must preserve its word count across locales.");
+  }
   for (const stationId of stationIds) {
     const englishStation = english.stations[stationId];
     const persianStation = persian.stations[stationId];

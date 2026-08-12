@@ -7,6 +7,10 @@ export const persianJourneyContent = {
     sourceHeading: "منابع",
     uncertaintyHeading: "دربارهٔ این بازسازی",
   },
+  introMotion: {
+    words: ["سنگ", "خاطره", "زمان"],
+    sentence: "سنگ آن‌چه را زمان نمی‌تواند پاک کند به یاد می‌سپارد.",
+  },
   stations: {
     intro: {
       id: "intro",

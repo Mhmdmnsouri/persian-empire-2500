@@ -38,8 +38,14 @@ export type InterfaceCopy = Readonly<{
   uncertaintyHeading: string;
 }>;
 
+export type IntroMotionCopy = Readonly<{
+  words: readonly [string, string, string];
+  sentence: string;
+}>;
+
 export type LocalizedJourneyContent = Readonly<{
   interface: InterfaceCopy;
+  introMotion: IntroMotionCopy;
   stations: Readonly<Record<StationId, StationContent>>;
 }>;
 

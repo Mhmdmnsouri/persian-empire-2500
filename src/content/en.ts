@@ -2,10 +2,14 @@ import type { LocalizedJourneyContent } from "./content.types";
 
 export const englishJourneyContent = {
   interface: {
-    skipLabel: "Skip to story",
+    skipLabel: "Skip intro",
     fallbackStatus: "The decorative WebGL scene is unavailable. The story remains available below.",
     sourceHeading: "Sources",
     uncertaintyHeading: "About this reconstruction",
+  },
+  introMotion: {
+    words: ["Stone", "Memory", "Time"],
+    sentence: "Stone remembers what time cannot erase.",
   },
   stations: {
     intro: {

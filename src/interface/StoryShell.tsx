@@ -1,5 +1,6 @@
 import { journeyStations } from "@/journey/journey.config";
 import type { LocalizedJourneyContent } from "@/content/content.types";
+import { IntroTypography } from "./IntroTypography";
 
 type StoryShellProps = Readonly<{ content: LocalizedJourneyContent }>;
 
@@ -8,7 +9,7 @@ export function StoryShell({ content }: StoryShellProps) {
     <main id="story" className="relative z-1">
       <a
         className="fixed inset-s-3 top-3 z-2 translate-y-[-200%] bg-paper px-4 py-3 text-ink focus:translate-y-0"
-        href="#story-content"
+        href="#station-grand-stairway"
       >
         {content.interface.skipLabel}
       </a>
@@ -23,8 +24,9 @@ export function StoryShell({ content }: StoryShellProps) {
             id={station.id === "intro" ? "story-content" : `station-${station.id}`}
             data-station={station.id}
             aria-labelledby={headingId}
-            className="grid min-h-[120svh] items-end p-6 sm:p-12 lg:p-24"
+            className="relative grid min-h-[120svh] items-end p-6 sm:p-12 lg:p-24"
           >
+            {station.id === "intro" ? <IntroTypography content={content.introMotion} /> : null}
             <div className="max-w-2xl border border-stone-border bg-ink/78 p-6">
               <p className="text-sm uppercase tracking-[0.2em] text-stone">
                 {station.index + 1} / {journeyStations.length}
