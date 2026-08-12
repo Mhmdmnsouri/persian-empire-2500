@@ -18,12 +18,13 @@ export default async function LocalePage({ params }: LocalePageProps) {
   }
 
   const locale: Locale = localeParam;
+  const content = getJourneyContent(locale);
 
   return (
     <>
-      <ExperienceCanvas />
+      <ExperienceCanvas fallbackCopy={content.interface.fallbackStatus} />
       <JourneyController />
-      <StoryShell content={getJourneyContent(locale)} />
+      <StoryShell content={content} />
     </>
   );
 }

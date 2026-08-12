@@ -1,5 +1,5 @@
 import { journeyStations } from "@/journey/journey.config";
-import type { LocalizedJourneyContent } from "@/content/journey-content";
+import type { LocalizedJourneyContent } from "@/content/content.types";
 
 type StoryShellProps = Readonly<{ content: LocalizedJourneyContent }>;
 
@@ -10,7 +10,7 @@ export function StoryShell({ content }: StoryShellProps) {
         className="fixed inset-s-3 top-3 z-2 translate-y-[-200%] bg-paper px-4 py-3 text-ink focus:translate-y-0"
         href="#story-content"
       >
-        {content.skipLabel}
+        {content.interface.skipLabel}
       </a>
       {journeyStations.map((station) => {
         const stationContent = content.stations[station.id];
@@ -35,9 +35,30 @@ export function StoryShell({ content }: StoryShellProps) {
               >
                 {stationContent.title}
               </Heading>
+              <p className="mt-4 text-lg leading-relaxed text-paper sm:text-2xl">
+                {stationContent.lead}
+              </p>
               <p className="mt-6 text-base leading-relaxed sm:text-xl">
                 {stationContent.description}
               </p>
+              {stationContent.labels.length > 0 ? (
+                <dl className="mt-6 grid gap-3 border-t border-stone-border pt-4 sm:grid-cols-2">
+                  {stationContent.labels.map((label) => (
+                    <div key={label.id}>
+                      <dt className="text-xs uppercase tracking-[0.16em] text-stone">
+                        {label.title}
+                      </dt>
+                      <dd className="mt-1 text-sm text-paper">{label.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
+              {stationContent.uncertaintyNote ? (
+                <aside className="mt-6 border-s-2 border-stone-border ps-4 text-sm leading-relaxed text-stone">
+                  <h3 className="font-medium text-paper">{content.interface.uncertaintyHeading}</h3>
+                  <p className="mt-2">{stationContent.uncertaintyNote}</p>
+                </aside>
+              ) : null}
             </div>
           </section>
         );

@@ -1598,8 +1598,6 @@ AI agents must update `docs/DECISIONS.md` when they:
 
 ---
 
----
-
 # ADR-021: Use Tailwind CSS for Component Styling
 
 ### Status
@@ -1631,6 +1629,41 @@ Colocating presentation with semantic JSX keeps component styles isolated and av
 
 ---
 
+---
+
+# ADR-022: Keep Journey Content and Sources in Typed Local Modules
+
+### Status
+
+Accepted
+
+### Date
+
+2026-08-12
+
+### Context
+
+The bilingual journey needs narrative copy, interface copy, uncertainty notes, terminology, and source references without placing historical prose in React components. Source IDs and claim strength also need to remain equivalent across Persian and English.
+
+### Decision
+
+Store English and Persian journey content in typed local modules. Keep cited sources in one source registry and terminology in one bilingual glossary. Validate source references, required factual citations, safe text fields, label limits, and cross-locale parity when the journey content module is loaded.
+
+### Consequences
+
+- React components receive localized content objects instead of hard-coded narrative copy.
+- A factual station cannot be introduced without at least one registry source.
+- The current placeholder GLBs are described with explicit uncertainty rather than as reconstructions.
+- A future CMS must preserve these contracts at its import boundary.
+
+### Related Documents
+
+- `docs/CONTENT_GUIDE.md`
+- `docs/ACCESSIBILITY.md`
+- `docs/TEST_PLAN.md`
+
+---
+
 # 3. Decision Index
 
 | ADR | Title | Status |
@@ -1656,6 +1689,7 @@ Colocating presentation with semantic JSX keeps component styles isolated and av
 | ADR-019 | Limit Code Quality Tooling | Accepted |
 | ADR-020 | Record Major AI Decisions | Accepted |
 | ADR-021 | Use Tailwind CSS for Component Styling | Accepted |
+| ADR-022 | Keep Journey Content and Sources in Typed Local Modules | Accepted |
 
 ---
 

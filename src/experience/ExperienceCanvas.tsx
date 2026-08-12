@@ -13,7 +13,9 @@ function supportsWebGL(): boolean {
   return Boolean(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
 }
 
-export function ExperienceCanvas() {
+type ExperienceCanvasProps = Readonly<{ fallbackCopy: string }>;
+
+export function ExperienceCanvas({ fallbackCopy }: ExperienceCanvasProps) {
   const [webglAvailable, setWebglAvailable] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -25,11 +27,11 @@ export function ExperienceCanvas() {
   }, []);
 
   if (webglAvailable === false) {
-    return <WebGLFallback />;
+    return <WebGLFallback message={fallbackCopy} />;
   }
 
   return (
-    <WebGLErrorBoundary fallback={<WebGLFallback />}>
+    <WebGLErrorBoundary fallback={<WebGLFallback message={fallbackCopy} />}>
       <Canvas className="pointer-events-none fixed inset-0 z-0" aria-hidden="true" dpr={[1, 1.5]}>
         <SceneRoot />
       </Canvas>
