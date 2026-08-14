@@ -18,7 +18,7 @@ export const assetManifest = {
   lamassu: {
     kind: "placeholder",
     model: placeholderVariants("lamassu-placeholder.glb"),
-    fallback: proceduralFallback,
+    fallback: { kind: "poster", url: "/assets/fallback/lamassu-placeholder-poster.png" },
   },
   "bull-capital": {
     kind: "placeholder",

@@ -39,6 +39,16 @@ export function validateStationContent(station: StationContent): string[] {
     errors.push(...validateText(label.value, `${station.id}.labels.${label.id}.value`));
   }
 
+  if (station.focusLabels) {
+    if (station.focusLabels.length > 3) {
+      errors.push(`${station.id}.focusLabels must contain at most three entries.`);
+    }
+    for (const label of station.focusLabels) {
+      errors.push(...validateText(label.title, `${station.id}.focusLabels.${label.id}.title`));
+      errors.push(...validateText(label.value, `${station.id}.focusLabels.${label.id}.value`));
+    }
+  }
+
   if (station.uncertaintyNote) {
     errors.push(...validateText(station.uncertaintyNote, `${station.id}.uncertaintyNote`));
   }
@@ -133,6 +143,11 @@ export function validateBilingualContent(
     const persianLabelIds = persianStation.labels.map((label) => label.id).sort();
     if (englishLabelIds.join("|") !== persianLabelIds.join("|")) {
       errors.push(`${stationId} must preserve label IDs across locales.`);
+    }
+    const englishFocusIds = englishStation.focusLabels?.map((label) => label.id).sort() ?? [];
+    const persianFocusIds = persianStation.focusLabels?.map((label) => label.id).sort() ?? [];
+    if (englishFocusIds.join("|") !== persianFocusIds.join("|")) {
+      errors.push(`${stationId} must preserve focus-label IDs across locales.`);
     }
   }
   return errors;

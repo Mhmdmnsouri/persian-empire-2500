@@ -29,7 +29,12 @@ export function validateAssetManifest(manifest: AssetManifest = assetManifest): 
       }
     }
 
-    if (entry.fallback.kind !== "procedural") {
+    if (
+      entry.fallback.kind !== "procedural" &&
+      (entry.fallback.kind !== "poster" ||
+        !entry.fallback.url.startsWith("/assets/fallback/") ||
+        !/\.(?:webp|avif|png)$/i.test(entry.fallback.url))
+    ) {
       throw new Error(`Asset ${key} requires a supported fallback.`);
     }
   }

@@ -26,6 +26,7 @@ export type StationContent = Readonly<{
   lead: string;
   description: string;
   labels: readonly StationLabel[];
+  focusLabels?: readonly StationLabel[];
   uncertaintyNote?: string;
   evidence: ContentEvidence;
   sourceIds: readonly string[];

@@ -2,9 +2,7 @@
 
 import { Component, type ErrorInfo, type ReactNode } from "react";
 
-import { ArtifactFallback } from "./ArtifactFallback";
-
-type AssetBoundaryProps = Readonly<{ children: ReactNode }>;
+type AssetBoundaryProps = Readonly<{ children: ReactNode; fallback: ReactNode }>;
 type AssetBoundaryState = Readonly<{ hasError: boolean }>;
 
 export class ArtifactAssetBoundary extends Component<AssetBoundaryProps, AssetBoundaryState> {
@@ -20,6 +18,6 @@ export class ArtifactAssetBoundary extends Component<AssetBoundaryProps, AssetBo
   }
 
   public render(): ReactNode {
-    return this.state.hasError ? <ArtifactFallback /> : this.props.children;
+    return this.state.hasError ? this.props.fallback : this.props.children;
   }
 }

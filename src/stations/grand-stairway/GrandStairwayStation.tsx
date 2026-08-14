@@ -27,6 +27,7 @@ function resolveProfile(): GrandStairwayMotionProfile {
 }
 
 export function GrandStairwayStation() {
+  const stationRoot = useRef<Group>(null);
   const steps = useRef<InstancedMesh>(null);
   const walls = useRef<InstancedMesh>(null);
   const reliefMaterial = useRef<MeshStandardMaterial>(null);
@@ -34,6 +35,7 @@ export function GrandStairwayStation() {
   const reliefLight = useRef<PointLight>(null);
   const lamassuSilhouette = useRef<Group>(null);
   const progress = useRef(0);
+  const active = useRef(false);
   const profile = useRef<GrandStairwayMotionProfile>("desktop");
   const motionDirty = useRef(true);
   const stepTransform = useRef(new Object3D());
@@ -42,13 +44,16 @@ export function GrandStairwayStation() {
 
   useEffect(() => {
     const updateProgress = () => {
+      const journey = useJourneyStore.getState();
       const nextProgress = normalizeStationProgress(
-        useJourneyStore.getState().globalProgress,
+        journey.globalProgress,
         stairwayStation.start,
         stairwayStation.end,
       );
-      if (nextProgress !== progress.current) {
+      const nextActive = journey.activeStationId === "grand-stairway";
+      if (nextProgress !== progress.current || nextActive !== active.current) {
         progress.current = nextProgress;
+        active.current = nextActive;
         motionDirty.current = true;
       }
     };
@@ -76,6 +81,8 @@ export function GrandStairwayStation() {
 
   useFrame(() => {
     if (!motionDirty.current) return;
+
+    if (stationRoot.current) stationRoot.current.visible = active.current;
 
     const activeProfile = profile.current;
     const localProgress = progress.current;
@@ -141,7 +148,7 @@ export function GrandStairwayStation() {
   });
 
   return (
-    <group>
+    <group ref={stationRoot} visible={false}>
       <instancedMesh
         ref={steps}
         args={[undefined, undefined, maximumStepCount]}

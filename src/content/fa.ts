@@ -54,6 +54,11 @@ export const persianJourneyContent = {
         "GLB فعلی placeholder است و بازسازی تأییدشده‌ای از پیکرهٔ نگهبان تخت جمشید نیست.",
       evidence: "confirmed",
       sourceIds: ["ISAC-GATE-XERXES"],
+      focusLabels: [
+        { id: "face", title: "تمرکز", value: "چهره" },
+        { id: "body", title: "تمرکز", value: "پیکره" },
+        { id: "wing", title: "تمرکز", value: "جزئیات بال" },
+      ],
     },
     "bull-capital": {
       id: "bull-capital",

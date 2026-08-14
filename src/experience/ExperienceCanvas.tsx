@@ -7,15 +7,19 @@ import { SceneRoot } from "./SceneRoot";
 import { CameraDiagnostics } from "./CameraDiagnostics";
 import { WebGLErrorBoundary } from "./WebGLErrorBoundary";
 import { WebGLFallback } from "./WebGLFallback";
+import type { StationLabel } from "@/content/content.types";
 
 function supportsWebGL(): boolean {
   const canvas = document.createElement("canvas");
   return Boolean(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
 }
 
-type ExperienceCanvasProps = Readonly<{ fallbackCopy: string }>;
+type ExperienceCanvasProps = Readonly<{
+  fallbackCopy: string;
+  lamassuFocusLabels: readonly StationLabel[];
+}>;
 
-export function ExperienceCanvas({ fallbackCopy }: ExperienceCanvasProps) {
+export function ExperienceCanvas({ fallbackCopy, lamassuFocusLabels }: ExperienceCanvasProps) {
   const [webglAvailable, setWebglAvailable] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -33,7 +37,7 @@ export function ExperienceCanvas({ fallbackCopy }: ExperienceCanvasProps) {
   return (
     <WebGLErrorBoundary fallback={<WebGLFallback message={fallbackCopy} />}>
       <Canvas className="pointer-events-none fixed inset-0 z-0" aria-hidden="true" dpr={[1, 1.5]}>
-        <SceneRoot />
+        <SceneRoot lamassuFocusLabels={lamassuFocusLabels} />
       </Canvas>
       {process.env.NODE_ENV === "development" ? <CameraDiagnostics /> : null}
     </WebGLErrorBoundary>

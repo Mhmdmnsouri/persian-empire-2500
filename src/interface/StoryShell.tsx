@@ -55,6 +55,18 @@ export function StoryShell({ content }: StoryShellProps) {
                   ))}
                 </dl>
               ) : null}
+              {stationContent.focusLabels && stationContent.focusLabels.length > 0 ? (
+                <dl className="mt-6 grid gap-3 border-t border-stone-border pt-4 sm:grid-cols-3">
+                  {stationContent.focusLabels.map((label) => (
+                    <div key={label.id}>
+                      <dt className="text-xs uppercase tracking-[0.16em] text-stone">
+                        {label.title}
+                      </dt>
+                      <dd className="mt-1 text-sm text-paper">{label.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
               {stationContent.uncertaintyNote ? (
                 <aside className="mt-6 border-s-2 border-stone-border ps-4 text-sm leading-relaxed text-stone">
                   <h3 className="font-medium text-paper">{content.interface.uncertaintyHeading}</h3>

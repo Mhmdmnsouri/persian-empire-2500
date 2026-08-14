@@ -18,9 +18,8 @@ export type AssetQuality = "high" | "standard" | "mobile" | "reduced";
 
 export type AssetVariants = Readonly<Record<AssetQuality, string>>;
 
-export type AssetFallback = Readonly<{
-  kind: "procedural";
-}>;
+export type AssetFallback =
+  Readonly<{ kind: "procedural" }> | Readonly<{ kind: "poster"; url: string }>;
 
 export type ArtifactAssetEntry = Readonly<{
   kind: "placeholder";

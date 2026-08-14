@@ -50,6 +50,11 @@ export const englishJourneyContent = {
         { id: "context", title: "Architectural context", value: "Gate of Xerxes" },
         { id: "evidence", title: "Sculptural form", value: "Guardian bull and man-bull figures" },
       ],
+      focusLabels: [
+        { id: "face", title: "Focus", value: "Face" },
+        { id: "body", title: "Focus", value: "Body" },
+        { id: "wing", title: "Focus", value: "Wing detail" },
+      ],
       uncertaintyNote:
         "The current GLB is a placeholder, not a verified reconstruction of a Persepolis guardian figure.",
       evidence: "confirmed",

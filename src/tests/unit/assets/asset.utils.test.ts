@@ -17,7 +17,7 @@ describe("asset infrastructure", () => {
 
     for (const entry of Object.values(assetManifest)) {
       expect(entry.kind).toBe("placeholder");
-      expect(entry.fallback.kind).toBe("procedural");
+      expect(["procedural", "poster"]).toContain(entry.fallback.kind);
       expect(entry.model.high).toMatch(/\.glb$/);
       expect(entry.model.standard).toMatch(/\.glb$/);
       expect(entry.model.mobile).toMatch(/\.glb$/);
@@ -30,6 +30,9 @@ describe("asset infrastructure", () => {
       for (const url of Object.values(entry.model)) {
         expect(existsSync(join(process.cwd(), "public", url))).toBe(true);
       }
+      if (entry.fallback.kind === "poster") {
+        expect(existsSync(join(process.cwd(), "public", entry.fallback.url))).toBe(true);
+      }
     }
   });
 
@@ -39,7 +42,7 @@ describe("asset infrastructure", () => {
     expect(resolveAssetQuality(true, true)).toBe("reduced");
     expect(resolveAsset("lamassu", "mobile")).toMatchObject({
       url: "/assets/models/lamassu-placeholder.glb",
-      fallback: { kind: "procedural" },
+      fallback: { kind: "poster", url: "/assets/fallback/lamassu-placeholder-poster.png" },
     });
   });
 

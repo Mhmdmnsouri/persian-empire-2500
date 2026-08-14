@@ -22,7 +22,10 @@ export default async function LocalePage({ params }: LocalePageProps) {
 
   return (
     <>
-      <ExperienceCanvas fallbackCopy={content.interface.fallbackStatus} />
+      <ExperienceCanvas
+        fallbackCopy={content.interface.fallbackStatus}
+        lamassuFocusLabels={content.stations.lamassu.focusLabels ?? []}
+      />
       <JourneyController />
       <StoryShell content={content} />
     </>
