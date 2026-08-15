@@ -3,6 +3,7 @@ import type { LocalizedJourneyContent } from "./content.types";
 export const englishJourneyContent = {
   interface: {
     skipLabel: "Skip intro",
+    restartLabel: "Restart journey",
     fallbackStatus: "The decorative WebGL scene is unavailable. The story remains available below.",
     sourceHeading: "Sources",
     uncertaintyHeading: "About this reconstruction",
