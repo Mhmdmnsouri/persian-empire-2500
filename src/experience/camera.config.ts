@@ -57,6 +57,10 @@ const paths: Record<StationId, StationCameraConfig> = {
       { progress: 0, position: [0, 2.5, 6.5], target: [0, 2.6, 0], fov: 43 },
       { progress: 1, position: [0, 3.3, 8], target: [0, 2.5, 0], fov: 46 },
     ],
+    mobileKeyframes: [
+      { progress: 0, position: [0, 2.7, 6.8], target: [0, 2.55, 0], fov: 46 },
+      { progress: 1, position: [0, 2.9, 7.1], target: [0, 2.7, 0], fov: 46 },
+    ],
     reducedMotionKeyframes: [
       { progress: 0, position: [0, 2.7, 7], target: [0, 2.5, 0], fov: 45 },
       { progress: 1, position: [0, 2.8, 7.2], target: [0, 2.5, 0], fov: 45 },
