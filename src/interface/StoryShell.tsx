@@ -1,12 +1,14 @@
 import { journeyStations } from "@/journey/journey.config";
 import type { LocalizedJourneyContent } from "@/content/content.types";
 import { IntroTypography } from "./IntroTypography";
+import { JourneyControls } from "./JourneyControls";
 
 type StoryShellProps = Readonly<{ content: LocalizedJourneyContent }>;
 
 export function StoryShell({ content }: StoryShellProps) {
   return (
     <main id="story" className="relative z-1">
+      <JourneyControls content={content} />
       <a
         className="fixed inset-s-3 top-3 z-2 translate-y-[-200%] bg-paper px-4 py-3 text-ink focus:translate-y-0"
         href="#station-grand-stairway"

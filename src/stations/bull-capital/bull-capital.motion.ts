@@ -8,6 +8,7 @@ export type BullCapitalMotionState = Readonly<{
   beamAssembly: number;
   capitalOffsetY: number;
   beamOffsetZ: number;
+  outroTransition: number;
 }>;
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
@@ -27,6 +28,7 @@ export function resolveBullCapitalMotionState(
       beamAssembly: 1,
       capitalOffsetY: 0,
       beamOffsetZ: 0,
+      outroTransition: 1,
     };
   }
 
@@ -46,5 +48,6 @@ export function resolveBullCapitalMotionState(
     beamAssembly,
     capitalOffsetY: (1 - capitalAssembly) * (compact ? 1.7 : 2.6),
     beamOffsetZ: (1 - beamAssembly) * (compact ? 1.2 : 2),
+    outroTransition: ramp(p, compact ? 0.9 : 0.88, 1),
   };
 }

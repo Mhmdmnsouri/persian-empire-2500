@@ -29,6 +29,7 @@ describe("Bull Capital motion", () => {
       beamAssembly: 1,
       capitalOffsetY: 0,
       beamOffsetZ: 0,
+      outroTransition: 1,
     });
   });
 

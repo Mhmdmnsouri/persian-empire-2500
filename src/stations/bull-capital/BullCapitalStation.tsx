@@ -71,7 +71,10 @@ export function BullCapitalStation() {
     if (!motionDirty.current) return;
     const state = resolveBullCapitalMotionState(progress.current, profile.current);
 
-    if (root.current) root.current.visible = active.current;
+    if (root.current) {
+      root.current.visible = active.current;
+      root.current.scale.setScalar(1 - state.outroTransition * 0.06);
+    }
     if (base.current) {
       base.current.visible = state.baseAssembly > 0;
       base.current.scale.y = Math.max(0.001, state.baseAssembly);
@@ -94,7 +97,9 @@ export function BullCapitalStation() {
       beam.current.position.z = state.beamOffsetZ;
       beam.current.scale.z = Math.max(0.001, state.beamAssembly);
     }
-    if (assemblyLight.current) assemblyLight.current.intensity = 0.35 + state.beamAssembly * 1.15;
+    if (assemblyLight.current) {
+      assemblyLight.current.intensity = (0.35 + state.beamAssembly * 1.15) * (1 - state.outroTransition);
+    }
     motionDirty.current = false;
   });
 

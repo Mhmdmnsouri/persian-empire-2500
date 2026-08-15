@@ -34,6 +34,7 @@ export type StationContent = Readonly<{
 
 export type InterfaceCopy = Readonly<{
   skipLabel: string;
+  restartLabel: string;
   fallbackStatus: string;
   sourceHeading: string;
   uncertaintyHeading: string;

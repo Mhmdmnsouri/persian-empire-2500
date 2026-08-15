@@ -3,6 +3,7 @@ import type { LocalizedJourneyContent } from "./content.types";
 export const persianJourneyContent = {
   interface: {
     skipLabel: "پرش به روایت",
+    restartLabel: "شروع دوباره",
     fallbackStatus: "صحنهٔ تزئینی وب‌جی‌ال در دسترس نیست؛ روایت در ادامه قابل استفاده است.",
     sourceHeading: "منابع",
     uncertaintyHeading: "دربارهٔ این بازسازی",
